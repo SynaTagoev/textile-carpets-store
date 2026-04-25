@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Основной фавикон для вкладки браузера -->
+  <link rel="icon" type="image/png" href="/textile-carpets-store/logo.jpg" />
+  <!-- Для Safari на iOS -->
+  <link rel="apple-touch-icon" href="/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WEAVE&CO — ручной текстиль</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Кастомные стили -->
+  <style>
+    /* Дополнительные стили */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FCFAF7;
+    }
+    /* Кастомные цвета */
+    .bg-terracotta { background-color: #C47B5D; }
+    .text-terracotta { color: #C47B5D; }
+    .border-terracotta { border-color: #C47B5D; }
+    .hover\:bg-terracotta:hover { background-color: #C47B5D; }
+    .hover\:text-terracotta:hover { color: #C47B5D; }
+    .hover\:border-terracotta:hover { border-color: #C47B5D; }
+    
+    .bg-dustyrose { background-color: #E8D5D0; }
+    .text-dustyrose { color: #E8D5D0; }
+    
+    .bg-sage { background-color: #9AA98A; }
+    .text-sage { color: #9AA98A; }
+    
+    .bg-cream { background-color: #FCFAF7; }
+    .text-cream { color: #FCFAF7; }
+    
+    .text-warmgray { color: #5E5A58; }
+    .bg-dark { background-color: #2C2C2C; }
+    .text-dark { color: #2C2C2C; }
+
+    /* Анимации */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeLeft {
+      from { opacity: 0; transform: translateX(-25px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeRight {
+      from { opacity: 0; transform: translateX(25px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slowFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    .animate-fade-up { animation: fadeUp 0.6s ease forwards; }
+    .animate-fade-left { animation: fadeLeft 0.6s ease forwards; }
+    .animate-fade-right { animation: fadeRight 0.6s ease forwards; }
+    .animate-float { animation: slowFloat 5s ease-in-out infinite; }
+
+    /* Появление при скролле */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-100 { transition-delay: 0.1s; }
+    .delay-200 { transition-delay: 0.2s; }
+    .delay-300 { transition-delay: 0.3s; }
+    .delay-400 { transition-delay: 0.4s; }
+    .delay-500 { transition-delay: 0.5s; }
+
+    /* Кастомный скроллбар */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #E8E0D5;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C47B5D;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/textile-carpets-store/assets/index-CpNuH_Gg.js"></script>
+  <link rel="stylesheet" crossorigin href="/textile-carpets-store/assets/index-CCIgps6z.css">
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
