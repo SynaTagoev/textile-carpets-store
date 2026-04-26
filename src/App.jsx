@@ -9,29 +9,25 @@ import Reviews from './components/Reviews';
 import Consultation from './components/Consultation';
 import Footer from './components/Footer';
 import CartSidebar from './components/CartSidebar';
+import OrdersModal from './components/OrdersModal';
+import { NotificationProvider, useNotification } from './context/NotificationContext';
 
-function App() {
+function AppContent() {
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isOrdersOpen, setIsOrdersOpen] = useState(false);
+  const { addNotification } = useNotification();
 
-  // Анимация при скролле
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('active');
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
-      observer.observe(el);
-    });
-    
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
-  // Загрузка корзины
   useEffect(() => {
     const savedCart = localStorage.getItem('cart');
     if (savedCart) setCart(JSON.parse(savedCart));
@@ -45,12 +41,9 @@ function App() {
     setCart(prev => {
       const existing = prev.find(item => item.id === product.id);
       if (existing) {
-        return prev.map(item => 
-          item.id === product.id 
-            ? { ...item, quantity: item.quantity + 1 } 
-            : item
-        );
+        return prev.map(item => item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item);
       }
+      addNotification(`${product.name} добавлен в корзину`, 'success');
       return [...prev, { ...product, quantity: 1 }];
     });
   };
@@ -64,9 +57,7 @@ function App() {
       removeFromCart(id);
       return;
     }
-    setCart(prev => prev.map(item => 
-      item.id === id ? { ...item, quantity } : item
-    ));
+    setCart(prev => prev.map(item => item.id === id ? { ...item, quantity } : item));
   };
 
   const clearCart = () => setCart([]);
@@ -74,7 +65,11 @@ function App() {
 
   return (
     <div>
-      <Header cartCount={cartCount} onCartOpen={() => setIsCartOpen(true)} />
+      <Header 
+        cartCount={cartCount} 
+        onCartOpen={() => setIsCartOpen(true)} 
+        onOrdersOpen={() => setIsOrdersOpen(true)}
+      />
       <Hero />
       <Categories />
       <Catalog onAddToCart={addToCart} />
@@ -91,7 +86,20 @@ function App() {
         onUpdateQuantity={updateQuantity}
         onClearCart={clearCart}
       />
+      <OrdersModal
+        isOpen={isOrdersOpen}
+        onClose={() => setIsOrdersOpen(false)}
+        onAddToCart={addToCart}
+      />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <NotificationProvider>
+      <AppContent />
+    </NotificationProvider>
   );
 }
 

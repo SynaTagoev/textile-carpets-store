@@ -1,0 +1,18 @@
+# robots.txt для WEAVE&CO
+# Разрешаем всем поисковым роботам индексировать сайт
+User-agent: *
+Allow: /
+
+# Запрещаем индексацию служебных страниц
+Disallow: /cart
+Disallow: /checkout
+Disallow: /api/
+
+# Указываем путь к карте сайта
+Sitemap: https://synatagoev.github.io/textile-carpets-store/sitemap.xml
+
+# Задержка между запросами для Яндекс (в секундах)
+Crawl-delay: 1
+
+# Указываем предпочтительный домен
+Host: https://synatagoev.github.io/textile-carpets-store
